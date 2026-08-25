@@ -11,8 +11,8 @@
   --line: rgba(21, 32, 28, 0.14);
   --shadow: 0 18px 50px rgba(21, 32, 28, 0.12);
   --radius: 2px;
-  --font-display: "HanziPen SC", "翩翩体-简", "HanziPenSC-W5", "HanziPenSC-W3", "STKaiti", "KaiTi", serif;
-  --font-body: "HanziPen SC", "翩翩体-简", "HanziPenSC-W3", "STKaiti", "KaiTi", "Songti SC", serif;
+  --font-display: "Kaiti SC", "STKaiti", "KaiTi", "楷体", "楷体_GB2312", "TW-Kai", serif;
+  --font-body: "Kaiti SC", "STKaiti", "KaiTi", "楷体", "楷体_GB2312", "TW-Kai", serif;
 }
 
 * { box-sizing: border-box; }
