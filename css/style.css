@@ -11,8 +11,8 @@
   --line: rgba(21, 32, 28, 0.14);
   --shadow: 0 18px 50px rgba(21, 32, 28, 0.12);
   --radius: 2px;
-  --font-display: "ZCOOL XiaoWei", "Noto Serif SC", serif;
-  --font-body: "Noto Serif SC", "Songti SC", serif;
+  --font-display: "HanziPen SC", "翩翩体-简", "HanziPenSC-W5", "HanziPenSC-W3", "STKaiti", "KaiTi", serif;
+  --font-body: "HanziPen SC", "翩翩体-简", "HanziPenSC-W3", "STKaiti", "KaiTi", "Songti SC", serif;
 }
 
 * { box-sizing: border-box; }
@@ -26,7 +26,9 @@ body {
     radial-gradient(1200px 600px at 10% -10%, rgba(90, 154, 126, 0.18), transparent 55%),
     radial-gradient(900px 500px at 100% 0%, rgba(31, 77, 110, 0.12), transparent 50%),
     linear-gradient(165deg, #f3f6f2 0%, var(--paper) 45%, #dfe8e2 100%);
-  line-height: 1.7;
+  line-height: 1.85;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
 }
 
 .ink-wash {
