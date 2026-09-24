@@ -1,0 +1,19 @@
+# 周易读书卡 · 本机 Docker 部署
+#
+# 启动:  ./docker-start.sh   或  docker compose up -d
+# 停止:  ./docker-stop.sh    或  docker compose down
+# 访问:  http://localhost:8080
+#
+# 源码目录挂载进容器；修改 html/css/js/data 后浏览器会自动刷新。
+
+services:
+  zhouyi:
+    image: python:3.12-alpine
+    container_name: zhouyi-reading-cards
+    working_dir: /app
+    volumes:
+      - ./:/app
+    ports:
+      - "8080:8080"
+    command: ["python", "scripts/live_server.py", "--host", "0.0.0.0", "--port", "8080"]
+    restart: unless-stopped

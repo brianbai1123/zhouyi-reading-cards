@@ -235,13 +235,38 @@ function renderCard() {
         </div>
 
         <div class="panel ${state.tab === "scholars" ? "active" : ""}" data-panel="scholars">
-          <p style="margin-top:0;color:var(--ink-soft);">下列为各派代表性读法的导读摘要（非原文逐字照录），方便对照思考。</p>
+          <p class="yao-lead">每位名家按五步展开：先理解 → 核心观点 → 重建逻辑 → 简单表达 → 快速理解检查。便于对照，也便于背记。</p>
           <div class="scholar-grid">
             ${h.scholars.map((s) => `
-              <div class="scholar">
-                <div class="who">${escapeHtml(s.name)}</div>
-                <div>${escapeHtml(s.view)}</div>
-              </div>
+              <article class="scholar-card">
+                <header class="scholar-card-head">
+                  <div class="who">${escapeHtml(s.name)}</div>
+                  <div class="scholar-view">${escapeHtml(s.view || "")}</div>
+                </header>
+                ${s.understand ? `
+                <div class="scholar-steps">
+                  <div class="scholar-step">
+                    <h4><span class="step-no">1</span>先理解</h4>
+                    <p>${escapeHtml(s.understand)}</p>
+                  </div>
+                  <div class="scholar-step">
+                    <h4><span class="step-no">2</span>核心观点</h4>
+                    <p>${escapeHtml(s.core || "")}</p>
+                  </div>
+                  <div class="scholar-step">
+                    <h4><span class="step-no">3</span>重建逻辑</h4>
+                    <p>${escapeHtml(s.logic || "")}</p>
+                  </div>
+                  <div class="scholar-step">
+                    <h4><span class="step-no">4</span>简单表达</h4>
+                    <p>${escapeHtml(s.plain || "")}</p>
+                  </div>
+                  <div class="scholar-step check">
+                    <h4><span class="step-no">5</span>快速理解检查</h4>
+                    <p>${escapeHtml(s.check || "")}</p>
+                  </div>
+                </div>` : `<div class="scholar-fallback">${escapeHtml(s.view || "")}</div>`}
+              </article>
             `).join("")}
           </div>
           <div class="contrast">

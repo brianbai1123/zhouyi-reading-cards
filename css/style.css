@@ -475,7 +475,7 @@ body {
 
 .scholar-grid {
   display: grid;
-  gap: 0.75rem;
+  gap: 1.25rem;
 }
 .scholar {
   padding: 0.8rem 0;
@@ -485,6 +485,71 @@ body {
 .scholar .who {
   font-weight: 700;
   color: var(--accent);
+}
+.scholar-card {
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.45);
+  padding: 1rem 1.1rem 1.15rem;
+}
+.scholar-card-head {
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--line);
+}
+.scholar-card-head .who {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+.scholar-view {
+  margin-top: 0.35rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+.scholar-steps {
+  display: grid;
+  gap: 0.75rem;
+}
+.scholar-step {
+  background: rgba(63, 111, 93, 0.05);
+  border: 1px solid rgba(63, 111, 93, 0.1);
+  padding: 0.75rem 0.85rem;
+}
+.scholar-step.check {
+  background: rgba(31, 77, 110, 0.06);
+  border-color: rgba(31, 77, 110, 0.14);
+}
+.scholar-step h4 {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  color: var(--celadon);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.step-no {
+  display: inline-grid;
+  place-items: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  background: var(--celadon);
+  color: #f4f8f5;
+  font-size: 0.75rem;
+  font-family: var(--font-body);
+  letter-spacing: 0;
+}
+.scholar-step p {
+  margin: 0;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+}
+.scholar-fallback {
+  color: var(--ink-soft);
 }
 
 .contrast {
