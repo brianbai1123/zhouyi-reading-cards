@@ -116,6 +116,8 @@ function renderList() {
 function openCard(id) {
   state.currentId = id;
   state.view = "card";
+  const hash = `#gua/${id}`;
+  if (location.hash !== hash) history.replaceState(null, "", hash);
   state.tab = "plain";
   state.flashIndex = 0;
   state.flashRevealed = false;
@@ -438,7 +440,13 @@ function bindChrome() {
 async function main() {
   await loadData();
   bindChrome();
-  render();
+  const match = location.hash.match(/^#gua\/(\d+)/);
+  if (match) openCard(Number(match[1]));
+  else render();
+  window.addEventListener("hashchange", () => {
+    const next = location.hash.match(/^#gua\/(\d+)/);
+    if (next) openCard(Number(next[1]));
+  });
 }
 
 main().catch((err) => {
