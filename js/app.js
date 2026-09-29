@@ -175,6 +175,28 @@ function renderCard() {
             <p class="rich">${escapeHtml(h.plain.core)}</p>
           </div>
           <div class="block">
+            <h3>逻辑因果链</h3>
+            <div class="chain">
+              ${h.plain.chain
+                .map(
+                  (link, i) => `
+                ${link.via ? `<div class="chain-via">↓ ${escapeHtml(link.via)}</div>` : ""}
+                <div class="chain-link">
+                  <span class="chain-num">${i + 1}</span>
+                  <div>
+                    <p class="chain-claim">${escapeHtml(link.claim)}</p>
+                    <p class="chain-detail">${escapeHtml(link.detail)}</p>
+                  </div>
+                </div>`
+                )
+                .join("")}
+            </div>
+            <div class="chain-breaks">
+              <strong>如果这条链断了</strong>
+              <ul>${h.plain.breaks.map((b) => `<li>${escapeHtml(b)}</li>`).join("")}</ul>
+            </div>
+          </div>
+          <div class="block">
             <h3>卦辞白话</h3>
             <div class="classic">${escapeHtml(h.guaci)}</div>
             <p class="rich">${escapeHtml(h.plain.guaciPlain || "")}</p>
