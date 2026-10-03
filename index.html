@@ -5,6 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>周易读书卡 · 六十四卦</title>
   <meta name="description" content="周易全文读书卡：卦爻辞、彖象、通俗讲解与名家对比，便于中学生背诵理解。" />
+  <script id="theme-bootstrap">
+    (() => {
+      const themes = ["paper", "celadon", "night"];
+      const valid = (theme) => themes.includes(theme);
+      const query = new URLSearchParams(location.search).get("theme");
+      let stored = null;
+
+      try {
+        stored = localStorage.getItem("zhouyi-reading-cards:theme");
+      } catch {}
+
+      const theme = valid(query) ? query : valid(stored) ? stored : "paper";
+
+      if (valid(query)) {
+        try {
+          localStorage.setItem("zhouyi-reading-cards:theme", query);
+        } catch {}
+      }
+
+      if (theme === "paper") {
+        document.documentElement.removeAttribute("data-theme");
+      } else {
+        document.documentElement.setAttribute("data-theme", theme);
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -22,6 +48,24 @@
       <span class="sr-only">搜索</span>
       <input id="searchInput" type="search" placeholder="搜卦名 / 关键词…" autocomplete="off" />
     </label>
+    <fieldset class="theme-switcher" aria-label="阅读主题">
+      <legend class="sr-only">阅读主题</legend>
+      <label class="theme-option theme-option-paper" title="宣纸">
+        <input type="radio" name="theme" value="paper" />
+        <span class="theme-swatch" aria-hidden="true"></span>
+        <span>宣纸</span>
+      </label>
+      <label class="theme-option theme-option-celadon" title="青瓷">
+        <input type="radio" name="theme" value="celadon" />
+        <span class="theme-swatch" aria-hidden="true"></span>
+        <span>青瓷</span>
+      </label>
+      <label class="theme-option theme-option-night" title="夜读">
+        <input type="radio" name="theme" value="night" />
+        <span class="theme-swatch" aria-hidden="true"></span>
+        <span>夜读</span>
+      </label>
+    </fieldset>
   </header>
 
   <main id="app"></main>
@@ -30,6 +74,7 @@
     <p>经文为古代公版文献；白话讲解与名家对比为导读综述，便于学习，非占卜指南。</p>
   </footer>
 
+  <script src="js/theme.mjs" type="module"></script>
   <script src="js/app.js" type="module"></script>
   <script src="/reading-room.js?v=2" defer></script>
 </body>

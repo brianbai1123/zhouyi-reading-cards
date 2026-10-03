@@ -1,18 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Noto+Sans+SC:wght@400;600;700&family=Noto+Serif+SC:wght@600;700;900&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-web@1.522.0/lxgwwenkaiscreen/result.css");
+
 :root {
-  --ink: #15201c;
-  --ink-soft: #2c3a34;
-  --paper: #e7ece6;
-  --paper-deep: #d5ddd4;
-  --mist: #9bb0a4;
-  --celadon: #3f6f5d;
-  --celadon-bright: #5a9a7e;
-  --accent: #1f4d6e;
-  --warn: #8b3a2f;
-  --line: rgba(21, 32, 28, 0.14);
-  --shadow: 0 18px 50px rgba(21, 32, 28, 0.12);
+  --background: #f3efe6;
+  --foreground: #1c1916;
+  --pine: #1c3d36;
+  --pine-soft: #e5f0eb;
+  --clay: #8a4b32;
+  --band: #efe4d2;
+  --line: #e0d5c4;
+  --muted: #5c554c;
+  --paper: #f7f3eb;
+  --ink: #1c1916;
+  --on-pine: #f7f3eb;
+  --selection: #d7ebe3;
+  --ink-soft: var(--muted);
+  --paper-deep: var(--band);
+  --mist: var(--muted);
+  --celadon: var(--pine);
+  --celadon-bright: var(--clay);
+  --accent: var(--clay);
+  --warn: var(--clay);
+  --shadow: 0 18px 50px color-mix(in srgb, var(--pine) 12%, transparent);
   --radius: 2px;
-  --font-display: "Kaiti SC", "STKaiti", "KaiTi", "楷体", "楷体_GB2312", "TW-Kai", serif;
-  --font-body: "Kaiti SC", "STKaiti", "KaiTi", "楷体", "楷体_GB2312", "TW-Kai", serif;
+  --font-sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  --font-serif: "Noto Serif SC", "Songti SC", "Source Han Serif SC", serif;
+  --font-kai: "LXGW WenKai Screen", "Kaiti SC", "STKaiti", "KaiTi", serif;
+  --font-numerals: "Cormorant Garamond", "Noto Serif SC", serif;
+  --font-display: var(--font-serif);
+  --font-body: var(--font-sans);
+  color-scheme: light;
+}
+
+:root[data-theme="celadon"] {
+  --background: #e5ede9;
+  --foreground: #16201d;
+  --pine: #1d4a5c;
+  --pine-soft: #dcebf0;
+  --clay: #9c5236;
+  --band: #d6e4de;
+  --line: #c3d4cc;
+  --muted: #4c5b55;
+  --paper: #f1f6f3;
+  --ink: #14201c;
+  --on-pine: #f1f6f3;
+  --selection: #c7dfe8;
+  color-scheme: light;
+}
+
+:root[data-theme="night"] {
+  --background: #161412;
+  --foreground: #e9e2d5;
+  --pine: #8fc7b0;
+  --pine-soft: #1f2e29;
+  --clay: #e0a07c;
+  --band: #2a251f;
+  --line: #38322a;
+  --muted: #a69d90;
+  --paper: #1f1c18;
+  --ink: #efe8db;
+  --on-pine: #13201c;
+  --selection: #2f4a40;
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -20,15 +69,19 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   min-height: 100vh;
-  color: var(--ink);
+  color: var(--foreground);
   font-family: var(--font-body);
   background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(90, 154, 126, 0.18), transparent 55%),
-    radial-gradient(900px 500px at 100% 0%, rgba(31, 77, 110, 0.12), transparent 50%),
-    linear-gradient(165deg, #f3f6f2 0%, var(--paper) 45%, #dfe8e2 100%);
+    radial-gradient(1200px 600px at 10% -10%, color-mix(in srgb, var(--clay) 16%, transparent), transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, color-mix(in srgb, var(--pine) 12%, transparent), transparent 50%),
+    linear-gradient(165deg, var(--paper) 0%, var(--background) 45%, var(--band) 100%);
   line-height: 1.85;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--selection);
 }
 
 .ink-wash {
@@ -56,7 +109,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0.85rem 1.25rem;
-  background: rgba(231, 236, 230, 0.86);
+  background: color-mix(in srgb, var(--background) 90%, transparent);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -93,13 +146,68 @@ body {
 .search input {
   width: min(220px, 42vw);
   border: 1px solid var(--line);
-  background: rgba(255,255,255,0.55);
+  background: color-mix(in srgb, var(--paper) 75%, transparent);
   padding: 0.45rem 0.75rem;
   font: inherit;
   color: var(--ink);
   outline: none;
 }
 .search input:focus { border-color: var(--celadon); }
+
+.theme-switcher {
+  display: flex;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0.2rem;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper) 70%, transparent);
+}
+.theme-option {
+  --swatch-bg: #f3efe6;
+  --swatch-accent: #1c3d36;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-height: 2rem;
+  padding: 0.2rem 0.45rem;
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.theme-option-celadon {
+  --swatch-bg: #e5ede9;
+  --swatch-accent: #1d4a5c;
+}
+.theme-option-night {
+  --swatch-bg: #161412;
+  --swatch-accent: #8fc7b0;
+}
+.theme-option input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+.theme-option:has(input:checked) {
+  color: var(--ink);
+  border-color: var(--pine);
+  background: var(--paper);
+}
+.theme-option:has(input:focus-visible) {
+  outline: 2px solid var(--pine);
+  outline-offset: 2px;
+}
+.theme-swatch {
+  width: 0.85rem;
+  height: 0.85rem;
+  flex: none;
+  border: 1px solid color-mix(in srgb, var(--swatch-accent) 35%, transparent);
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--swatch-bg) 50%, var(--swatch-accent) 50%);
+}
 
 #app {
   position: relative;
@@ -167,7 +275,7 @@ body {
   color: var(--ink);
 }
 .btn.ghost:hover {
-  background: rgba(63, 111, 93, 0.08);
+  background: color-mix(in srgb, var(--pine) 8%, transparent);
 }
 .hero-visual {
   margin-top: 1.5rem;
@@ -210,7 +318,7 @@ body {
 }
 .hex-tile {
   border: 1px solid var(--line);
-  background: rgba(255,255,255,0.42);
+  background: color-mix(in srgb, var(--paper) 72%, transparent);
   padding: 1rem 0.75rem;
   text-align: center;
   cursor: pointer;
@@ -262,7 +370,7 @@ body {
 .chip.active {
   border-color: var(--celadon);
   color: var(--celadon);
-  background: rgba(63, 111, 93, 0.08);
+  background: color-mix(in srgb, var(--pine) 8%, transparent);
 }
 
 /* Reading card */
@@ -284,7 +392,7 @@ body {
 
 .reading-card {
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.72), rgba(245,248,244,0.9)),
+    linear-gradient(180deg, color-mix(in srgb, var(--paper) 82%, transparent), var(--paper)),
     var(--paper);
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
@@ -360,7 +468,7 @@ body {
 .tabs button.active {
   background: var(--celadon);
   border-color: var(--celadon);
-  color: #f4f8f5;
+  color: var(--on-pine);
 }
 
 .panel { display: none; }
@@ -377,8 +485,9 @@ body {
   color: var(--celadon);
 }
 .classic {
-  background: rgba(63, 111, 93, 0.06);
+  background: color-mix(in srgb, var(--pine) 6%, transparent);
   border-left: 3px solid var(--celadon);
+  font-family: var(--font-kai);
   padding: 0.85rem 1rem;
   margin: 0.5rem 0;
 }
@@ -405,6 +514,7 @@ body {
   color: var(--celadon);
   display: grid;
   place-items: center;
+  font-family: var(--font-numerals);
   font-size: 0.9rem;
   margin-top: 0.15rem;
 }
@@ -428,7 +538,7 @@ body {
 .chain-breaks {
   margin-top: 1rem;
   border-left: 3px solid var(--warn);
-  background: rgba(139, 58, 47, 0.05);
+  background: color-mix(in srgb, var(--clay) 5%, transparent);
   padding: 0.75rem 1rem;
 }
 .chain-breaks strong {
@@ -476,6 +586,7 @@ body {
   margin-bottom: 0.45rem;
 }
 .yao-ord {
+  font-family: var(--font-numerals);
   font-size: 0.8rem;
   color: var(--mist);
 }
@@ -501,9 +612,9 @@ body {
   color: var(--ink-soft);
 }
 .yao-grid > div {
-  background: rgba(63, 111, 93, 0.05);
+  background: color-mix(in srgb, var(--pine) 5%, transparent);
   padding: 0.7rem 0.8rem;
-  border: 1px solid rgba(63, 111, 93, 0.1);
+  border: 1px solid color-mix(in srgb, var(--pine) 10%, transparent);
 }
 @media (max-width: 720px) {
   .yao-grid { grid-template-columns: 1fr; }
@@ -511,7 +622,11 @@ body {
 
 .recite-box {
   border: 1px solid var(--celadon);
-  background: linear-gradient(135deg, rgba(63,111,93,0.08), rgba(31,77,110,0.06));
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--pine) 8%, transparent),
+    color-mix(in srgb, var(--clay) 6%, transparent)
+  );
   padding: 1rem 1.1rem;
   margin: 1rem 0;
 }
@@ -538,7 +653,7 @@ body {
 }
 .scholar-card {
   border: 1px solid var(--line);
-  background: rgba(255,255,255,0.45);
+  background: color-mix(in srgb, var(--paper) 75%, transparent);
   padding: 1rem 1.1rem 1.15rem;
 }
 .scholar-card-head {
@@ -562,13 +677,13 @@ body {
   gap: 0.75rem;
 }
 .scholar-step {
-  background: rgba(63, 111, 93, 0.05);
-  border: 1px solid rgba(63, 111, 93, 0.1);
+  background: color-mix(in srgb, var(--pine) 5%, transparent);
+  border: 1px solid color-mix(in srgb, var(--pine) 10%, transparent);
   padding: 0.75rem 0.85rem;
 }
 .scholar-step.check {
-  background: rgba(31, 77, 110, 0.06);
-  border-color: rgba(31, 77, 110, 0.14);
+  background: color-mix(in srgb, var(--clay) 6%, transparent);
+  border-color: color-mix(in srgb, var(--clay) 14%, transparent);
 }
 .scholar-step h4 {
   margin: 0 0 0.35rem;
@@ -587,9 +702,9 @@ body {
   height: 1.25rem;
   border-radius: 50%;
   background: var(--celadon);
-  color: #f4f8f5;
+  color: var(--on-pine);
   font-size: 0.75rem;
-  font-family: var(--font-body);
+  font-family: var(--font-numerals);
   letter-spacing: 0;
 }
 .scholar-step p {
@@ -605,8 +720,8 @@ body {
 .contrast {
   margin-top: 1rem;
   padding: 1rem;
-  background: rgba(31, 77, 110, 0.06);
-  border: 1px solid rgba(31, 77, 110, 0.15);
+  background: color-mix(in srgb, var(--clay) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--clay) 15%, transparent);
 }
 
 .flash-controls {
@@ -622,15 +737,18 @@ body {
   text-align: center;
   padding: 1.5rem;
   border: 1px dashed var(--celadon);
-  background: rgba(255,255,255,0.45);
+  background: color-mix(in srgb, var(--paper) 75%, transparent);
   cursor: pointer;
   transition: background 0.25s ease;
 }
-.flash-face:hover { background: rgba(63, 111, 93, 0.08); }
+.flash-face:hover { background: color-mix(in srgb, var(--pine) 8%, transparent); }
 .flash-face .big {
-  font-family: var(--font-display);
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
-  letter-spacing: 0.08em;
+  font-family: var(--font-kai);
+  font-size: clamp(1.05rem, 2.2vw, 1.55rem);
+  letter-spacing: 0.06em;
+  white-space: pre-wrap;
+  text-align: left;
+  line-height: 1.7;
 }
 .flash-face .small {
   margin-top: 0.75rem;
@@ -645,7 +763,7 @@ body {
   gap: 1rem;
 }
 .xici-card {
-  background: rgba(255,255,255,0.5);
+  background: color-mix(in srgb, var(--paper) 78%, transparent);
   border: 1px solid var(--line);
   padding: 1.1rem 1.2rem;
   animation: cardIn 0.4s ease both;
@@ -662,9 +780,34 @@ body {
   color: var(--ink-soft);
 }
 
+@media (max-width: 900px) {
+  .site-header { justify-content: flex-start; }
+  .search { margin-left: auto; }
+  .theme-switcher {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
 @media (max-width: 640px) {
   .card-top { grid-template-columns: 1fr; }
   .gua-figure { width: 72px; }
   .site-header { padding: 0.75rem; }
   .brand { width: 100%; }
+  .nav {
+    width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  .search {
+    flex: 1 1 12rem;
+    margin-left: 0;
+  }
+  .search input { width: 100%; }
+  .theme-switcher {
+    width: auto;
+    max-width: 100%;
+    margin-left: auto;
+    overflow-x: auto;
+  }
 }
